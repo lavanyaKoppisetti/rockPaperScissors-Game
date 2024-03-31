@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Rock Paper Scissors</title>
+ <link rel="stylesheet" href="style1.css">
+ <script>
+  function computer() {
+    const choices = ["Rock", "Paper", "Scissors"];
+    const randomIndex = Math.floor(Math.random() * choices.length);
+    return choices[randomIndex];
+  }
+
+  function playerc(playerChoice, computerChoice) {
+    if (playerChoice === computerChoice) {
+     const t="It's a Tie";
+     document.getElementById('result').innerHTML=t;
+    } else if (
+      (playerChoice === "Rock" && computerChoice === "Scissors") ||
+      (playerChoice === "Paper" && computerChoice === "Rock") ||
+      (playerChoice === "Scissors" && computerChoice === "Paper")
+    ) {
+      const p="Player wins🎉";
+      document.getElementById('result').innerHTML=p;
+    } else {
+     const c="Computer wins🎉";
+      document.getElementById('result').innerHTML=c;
+    }
+  }
+
+  function playRound(playerChoice) {
+    const computerChoice = computer();
+    document.getElementById('computer-choice').innerText = "Computer chose: " + computerChoice;
+    setTimeout(function() {
+      playerc(playerChoice, computerChoice);
+    }, 1000); // Delay the call to playerc by 1 second (1000 milliseconds)
+  }
+
+  // Automatically play a round when the page loads
+  window.onload = function() {
+    const computerChoice = computer();
+    document.getElementById('computer-choice').innerText = "Computer chose: " + computerChoice;
+  };
+ </script>
+</head>
+<body>
+  <div class="l">
+  <h1 style="font-size: 80px;"><center>Rock-Paper-Scissors</center></h1><br>
+  
+  <h1><center style="font-weight: 600;">Player's Choice</center></h1>
+
+  <div class="a">
+    <div class="k">
+      <button onclick="playRound('Rock')" class="btn btn1">✊</button>
+      <button onclick="playRound('Paper')">🤚</button>
+      <button onclick="playRound('Scissors')">✌️</button>
+    </div>
+  </div>
+  <h1 id="computer-choice" style="text-align: center;color: rgb(72, 69, 224); font-weight: 600;"></h1>
+  <h1 id="result" style="text-align: center;color: rgb(158, 44, 19); font-weight: 600;"></h1>
+</div>
+</body>
+</html>
